@@ -31,69 +31,69 @@
     <div class="container time-block" >
         <div class="row">
           <div class="col-2 hour">
-            9 AM
+            <span>9 AM</span>
           </div>
-          <p class="col-8 taskEl">
+          <p class="col-8 taskEl" id="9am">
           </p>
            <button class="col-2 saveBtn fas fa-lock">
           </button>
         </div>
         <div class="row">
-          <div class="col-2 hour">
+          <div class="col-2 hour" >
             10 AM
           </div>
-          <p class="col-8 taskEl">
-            event
+          <p class="col-8 taskEl" id="10am">
+            
           </p>
           <button class="col-2 saveBtn fas fa-lock">
           </button>
         </div>
         <div class="row">
-          <div class="col-2 hour">
+          <div class="col-2 hour" >
             11 AM
           </div>
-          <p class="col-8 taskEl">
-            event
+          <p class="col-8 taskEl" id="11am">
+            
           </p>
           <button class="col-2 saveBtn fas fa-lock">
           </button>
         </div>
         <div class="row">
-          <div class="col-2 hour">
+          <div class="col-2 hour" >
             12 PM
           </div>
-          <p class="col-8 taskEL">
-            event
+          <p class="col-8 taskEl" id="12pm">
+            
           </p>
           <button class="col-2 saveBtn fas fa-lock">
           </button>
         </div>
         <div class="row">
-          <div class="col-2 hour">
+          <div class="col-2 hour" >
             1 PM
           </div>
-          <p class="col-8 taskEl">
-            event
+          <p class="col-8 taskEl" id="1pm">
+            
           </p>
           <button class="col-2 saveBtn fas fa-lock">
           </button>
         </div>
         <div class="row">
-          <div class="col-2 hour">
+          <div class="col-2 hour" >
             2 PM
           </div>
-          <p class="col-8 taskEl">
-            event
+          <p class="col-8 taskEl" id="2pm">
+            
           </p>
           <button class="col-2 saveBtn fas fa-lock">
           </button>
         </div>
         <div class="row">
-          <div class="col-2 hour">
+          <div class="col-2 hour" >
             3 PM
           </div>
-          <p class="col-8 taskEl">
-            event
+          <p class="col-8 taskEl" id="3pm">
+            
           </p>
           <button class="col-2 saveBtn fas fa-lock">
           </button>
@@ -102,8 +102,8 @@
           <div class="col-2 hour">
             4 PM
           </div>
-          <p class="col-8 taskEl">
-            event
+          <p class="col-8 taskEl" id="4pm">
+            
           </p>
           <button class="col-2 saveBtn fas fa-lock">
           </button>
@@ -112,8 +112,8 @@
           <div class="col-2 hour">
             5 PM
           </div>
-          <p class="col-8 taskEl">
-            event
+          <p class="col-8 taskEl" id= "5pm">
+            
           </p>
             <button class="col-2 saveBtn fas fa-lock">
             </button>
@@ -123,7 +123,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script>
-      
+      var list = JSON.parse(localStorage.getItem('taskToDo')) || [];
       // display current date
       var currentDay = moment().format("dddd, MMMM Do YYYY");
       $(".day").text(currentDay);
@@ -161,15 +161,116 @@
           .text(text);
         $(this).replaceWith(taskP);
       });
-      $(".saveBtn").on("click", function(){
-        saveTasks();
-      });
 
-      var saveTasks = function() {
-        window.localStorage.setItem('tasks', JSON.stringify(textInput));
-        console.log(textInput);
+
+      var getTime = function(hour) {
+        var time = moment().format("hA");
+        console.log(time);
+
+        var taskTime9 = moment().set('hour', 9);
+        var taskEl = $('#9am');
+        if (moment().isAfter(taskTime9)) {
+          $(taskEl).addClass("past");
+        } else if (moment().isBefore(taskTime9)) {
+          $(taskEl).addClass("future");
+        } else {
+          $(taskEl).addClass("preset");
+        };
+
+        var taskTime10 = moment().set('hour', 10);
+        var taskEl = $('#10am');
+        if (moment().isAfter(taskTime10)) {
+          $(taskEl).addClass("past");
+        } else if (moment().isBefore(taskTime10)) {
+          $(taskEl).addClass("future");
+        } else {
+          $(taskEl).addClass("present");
+        };
+
+        var taskTime11 = moment().set('hour', 11);
+        var taskEl = $('#11am');
+        if (moment().isAfter(taskTime11)) {
+          $(taskEl).addClass("past");
+        } else if (moment().isBefore(taskTime11)) {
+          $(taskEl).addClass("future");
+        } else {
+          $(taskEl).addClass("present");
+        };
+
+        var taskTime12 = moment().set('hour', 12);
+        var taskEl = $('#12pm');
+        if (moment().isAfter(taskTime12)) {
+          $(taskEl).addClass("past");
+        } else if (moment().isBefore(taskTime12)) {
+          $(taskEl).addClass("future");
+        } else {
+          $(taskEl).addClass("present");
+        }; 
+
+        var taskTime1 = moment().set('hour', 13);
+        var taskEl = $('#1pm');
+        if (moment().isAfter(taskTime1)) {
+          $(taskEl).addClass("past");
+        } else if (moment().isBefore(taskTime1)) {
+          $(taskEl).addClass("future");
+        } else {
+          $(taskEl).addClass("present");
+        }; 
+
+        var taskTime2 = moment().set('hour', 14);
+        var taskEl = $('#2pm');
+        if (moment().isAfter(taskTime2)) {
+          $(taskEl).addClass("past");
+        } else if (moment().isBefore(taskTime2)) {
+          $(taskEl).addClass("future");
+        } else {
+          $(taskEl).addClass("present");
+        }; 
+
+        var taskTime3 = moment().set('hour', 15);
+        var taskEl = $('#3pm');
+        if (moment().isAfter(taskTime3)) {
+          $(taskEl).addClass("past");
+        } else if (moment().isBefore(taskTime3)) {
+          $(taskEl).addClass("future");
+        } else {
+          $(taskEl).addClass("present");
+        }; 
+
+        var taskTime4 = moment().set('hour', 16);
+        var taskEl = $('#4pm');
+        if (moment().isAfter(taskTime4)) {
+          $(taskEl).addClass("past");
+        } else if (moment().isBefore(taskTime4)) {
+          $(taskEl).addClass("future");
+        } else {
+          $(taskEl).addClass("present");
+        }; 
+
+        var taskTime5 = moment().set('hour', 17);
+        var taskEl = $('#5pm');
+        if (moment().isAfter(taskTime5)) {
+          $(taskEl).addClass("past");
+        } else if (moment().isBefore(taskTime5)) {
+          $(taskEl).addClass("future");
+        } else {
+          $(taskEl).addClass("present");
+        }; 
       };
 
+      
+      $(".saveBtn").on("click", function(event){
+        var taskToDo = $('#to-do')
+          .val();
+
+        list.push(taskToDo);
+
+        localStorage.setItem('task', JSON.stringify(list));
+        
+        console.log(taskToDo);
+        getTime();
+        
+      });
   
       
 
